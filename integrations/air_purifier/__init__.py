@@ -1,13 +1,14 @@
 """Integracja: oczyszczacz Samsung AX60R5080WD — domain wrapper nad SmartThings.
 
-Transport (REST + CLI discovery) zostaje wspólny w integrations/smartthings.py;
-ta paczka wnosi konkretne urządzenie: config (token+device id), narzędzia, stan.
+Transport (REST + CLI discovery) jest CZĘŚCIĄ paczki (smartthings.py) — paczka musi
+być samowystarczalna, żeby dało się ją zainstalować z marketplace. Stary import
+`integrations.smartthings` działa dalej przez shim w repo Nelly.
 """
 from __future__ import annotations
 
 from typing import Any, Callable
 
-from integrations import smartthings
+from integrations.air_purifier import smartthings
 from integrations.framework.config_store import cfg
 
 FAN_MODES = ("auto", "low", "medium", "high", "sleep")
