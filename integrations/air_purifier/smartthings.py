@@ -12,10 +12,9 @@ import sys
 from typing import Any
 
 import httpx
-from dotenv import load_dotenv
 
-load_dotenv()
-
+# Celowo BEZ load_dotenv(): .env ładuje host (config.py) — paczki marketplace muszą
+# importować się bez zależności od python-dotenv (token i tak przychodzi przez cfg()).
 BASE_URL = "https://api.smartthings.com/v1"
 
 
