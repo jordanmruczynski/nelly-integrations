@@ -1,0 +1,49 @@
+{
+  "manifest_version": 1,
+  "id": "air_purifier",
+  "name": "Oczyszczacz Samsung",
+  "description": {
+    "pl": "Oczyszczacz powietrza Samsung (AX60R5080WD i podobne) przez chmurę SmartThings.",
+    "en": "Samsung air purifier (AX60R5080WD and similar) via SmartThings cloud."
+  },
+  "version": "1.0.0",
+  "author": "jordan",
+  "category": "climate",
+  "icon": "air",
+  "requirements": [],
+  "config": [
+    {
+      "key": "SMARTTHINGS_TOKEN",
+      "label": {"pl": "Token SmartThings"},
+      "type": "password",
+      "required": true,
+      "secret": true,
+      "env_fallback": "SMARTTHINGS_TOKEN",
+      "help": {"pl": "Personal Access Token z https://account.smartthings.com/tokens (uprawnienia: devices)."}
+    },
+    {
+      "key": "SMARTTHINGS_DEVICE_ID_PURIFIER",
+      "label": {"pl": "Urządzenie (oczyszczacz)"},
+      "type": "string",
+      "required": true,
+      "secret": false,
+      "env_fallback": "SMARTTHINGS_DEVICE_ID_PURIFIER",
+      "help": {"pl": "Wybierz z listy po wpisaniu tokena (przycisk 'Pobierz urządzenia')."}
+    }
+  ],
+  "pairing": {
+    "method": "cloud_list",
+    "actions": [
+      {"id": "list_devices", "label": {"pl": "Pobierz urządzenia"}, "kind": "list_pick", "fills": "SMARTTHINGS_DEVICE_ID_PURIFIER"},
+      {"id": "test", "label": {"pl": "Testuj połączenie"}, "kind": "test"}
+    ]
+  },
+  "tools": [
+    {"name": "turn_on_air_purifier", "proactive": true},
+    {"name": "turn_off_air_purifier", "proactive": true},
+    {"name": "set_air_purifier_fan_mode", "proactive": true},
+    {"name": "get_air_purifier_status", "proactive": true}
+  ],
+  "dashboard_tile": {"icon": "air", "label": {"pl": "Powietrze"}},
+  "status_line": true
+}

@@ -1,0 +1,26 @@
+{
+  "manifest_version": 1,
+  "id": "weather",
+  "name": "Pogoda",
+  "description": {
+    "pl": "Pogoda i prognoza z Open-Meteo (darmowe, bez klucza API). Lokalizacja z config.py.",
+    "en": "Weather and forecast from Open-Meteo (free, no API key). Location from config.py."
+  },
+  "version": "1.0.0",
+  "author": "jordan",
+  "category": "info",
+  "icon": "cloud",
+  "requirements": [],
+  "config": [],
+  "pairing": {
+    "method": "form",
+    "actions": [
+      {"id": "test", "label": {"pl": "Testuj połączenie"}, "kind": "test"}
+    ]
+  },
+  "tools": [
+    {"name": "get_weather", "proactive": true}
+  ],
+  "dashboard_tile": {"icon": "cloud", "label": {"pl": "Pogoda"}},
+  "status_line": false
+}

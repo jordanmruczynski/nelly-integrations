@@ -1,0 +1,59 @@
+{
+  "manifest_version": 1,
+  "id": "spotify",
+  "name": "Spotify",
+  "description": {
+    "pl": "Sterowanie odtwarzaniem Spotify (Spotify Connect) — utwory, playlisty, głośność.",
+    "en": "Spotify playback control (Spotify Connect) — tracks, playlists, volume."
+  },
+  "version": "1.0.0",
+  "author": "jordan",
+  "category": "media",
+  "icon": "play",
+  "requirements": ["spotipy"],
+  "config": [
+    {
+      "key": "SPOTIFY_CLIENT_ID",
+      "label": {"pl": "Client ID aplikacji Spotify"},
+      "type": "string",
+      "required": true,
+      "secret": false,
+      "env_fallback": "SPOTIFY_CLIENT_ID",
+      "help": {"pl": "Z https://developer.spotify.com/dashboard — utwórz aplikację (darmowe)."}
+    },
+    {
+      "key": "SPOTIFY_CLIENT_SECRET",
+      "label": {"pl": "Client Secret"},
+      "type": "password",
+      "required": true,
+      "secret": true,
+      "env_fallback": "SPOTIFY_CLIENT_SECRET"
+    },
+    {
+      "key": "SPOTIFY_REDIRECT_URI",
+      "label": {"pl": "Redirect URI (opcjonalnie)"},
+      "type": "string",
+      "required": false,
+      "secret": false,
+      "placeholder": "http://127.0.0.1:8888/callback",
+      "env_fallback": "SPOTIFY_REDIRECT_URI",
+      "help": {"pl": "Musi się zgadzać z ustawieniem w Spotify Dashboard. Zostaw puste = domyślne."}
+    }
+  ],
+  "pairing": {
+    "method": "oauth",
+    "actions": [
+      {"id": "test", "label": {"pl": "Testuj połączenie"}, "kind": "test"}
+    ]
+  },
+  "tools": [
+    {"name": "play_spotify", "proactive": true},
+    {"name": "pause_spotify", "proactive": true},
+    {"name": "next_spotify_track", "proactive": true},
+    {"name": "previous_spotify_track", "proactive": true},
+    {"name": "set_spotify_volume", "proactive": true},
+    {"name": "get_spotify_status", "proactive": true}
+  ],
+  "dashboard_tile": {"icon": "play", "label": {"pl": "Spotify"}},
+  "status_line": true
+}

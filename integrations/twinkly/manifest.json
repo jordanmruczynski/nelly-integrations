@@ -1,0 +1,41 @@
+{
+  "manifest_version": 1,
+  "id": "twinkly",
+  "name": "Twinkly",
+  "description": {
+    "pl": "Inteligentne światełka Twinkly sterowane po sieci lokalnej (LAN).",
+    "en": "Twinkly smart LED lights over the local network (LAN)."
+  },
+  "version": "1.0.0",
+  "author": "jordan",
+  "category": "lighting",
+  "icon": "sunrise",
+  "requirements": [],
+  "config": [
+    {
+      "key": "TWINKLY_IP",
+      "label": {"pl": "Adres IP światełek"},
+      "type": "string",
+      "required": true,
+      "secret": false,
+      "placeholder": "192.168.1.50",
+      "env_fallback": "TWINKLY_IP",
+      "help": {"pl": "Znajdziesz w aplikacji Twinkly → ustawienia urządzenia → informacje o sieci."}
+    }
+  ],
+  "pairing": {
+    "method": "form",
+    "actions": [
+      {"id": "test", "label": {"pl": "Testuj połączenie"}, "kind": "test"}
+    ]
+  },
+  "tools": [
+    {"name": "turn_on_leds", "proactive": true},
+    {"name": "turn_off_leds", "proactive": true},
+    {"name": "set_leds_color", "proactive": true},
+    {"name": "set_leds_brightness", "proactive": true},
+    {"name": "get_leds_status", "proactive": true}
+  ],
+  "dashboard_tile": {"icon": "sunrise", "label": {"pl": "Światła"}},
+  "status_line": true
+}

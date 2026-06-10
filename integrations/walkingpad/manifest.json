@@ -1,0 +1,41 @@
+{
+  "manifest_version": 1,
+  "id": "walkingpad",
+  "name": "WalkingPad",
+  "description": {
+    "pl": "Bieżnia Kingsmith WalkingPad (X21 i podobne) przez Bluetooth LE.",
+    "en": "Kingsmith WalkingPad treadmill (X21 and similar) over Bluetooth LE."
+  },
+  "version": "1.0.0",
+  "author": "jordan",
+  "category": "fitness",
+  "icon": "bolt",
+  "requirements": ["bleak", "ph4-walkingpad"],
+  "config": [
+    {
+      "key": "WALKINGPAD_ADDRESS",
+      "label": {"pl": "Adres BLE bieżni"},
+      "type": "string",
+      "required": true,
+      "secret": false,
+      "placeholder": "AA:BB:CC:DD:EE:FF",
+      "env_fallback": "WALKINGPAD_ADDRESS",
+      "help": {"pl": "Włącz bieżnię i użyj przycisku 'Skanuj BLE', żeby znaleźć adres."}
+    }
+  ],
+  "pairing": {
+    "method": "ble_scan",
+    "actions": [
+      {"id": "scan", "label": {"pl": "Skanuj BLE"}, "kind": "list_pick", "fills": "WALKINGPAD_ADDRESS"},
+      {"id": "test", "label": {"pl": "Testuj połączenie"}, "kind": "test"}
+    ]
+  },
+  "tools": [
+    {"name": "start_walkingpad", "proactive": false},
+    {"name": "stop_walkingpad", "proactive": true},
+    {"name": "set_walkingpad_speed", "proactive": false},
+    {"name": "get_walkingpad_status", "proactive": true}
+  ],
+  "dashboard_tile": {"icon": "bolt", "label": {"pl": "Bieżnia"}},
+  "status_line": true
+}
