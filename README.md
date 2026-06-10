@@ -37,7 +37,7 @@ Gdy walidator przechodzi i urządzenie działa u Ciebie głosem + w apce:
 3. Po review właściciela i merge'u CI przebuduje `index.json` — integracja
    pojawi się w sklepie wszystkich Nelly.
 
-Twarde zasady (szczegóły w `INTEGRATIONS.md` — w przygotowaniu):
+Twarde zasady (szczegóły w [INTEGRATIONS.md](INTEGRATIONS.md)):
 - import paczki MUSI działać bez konfiguracji; wartości tylko przez `cfg()`,
 - `get_status()` nigdy nie rzuca — zwraca `{"reachable": false, "error": ...}`,
 - zero sekretów/IP w kodzie (CI skanuje), wszystko przez `manifest.json → config`,

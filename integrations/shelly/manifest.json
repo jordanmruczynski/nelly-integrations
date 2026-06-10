@@ -1,0 +1,48 @@
+{
+  "manifest_version": 1,
+  "id": "shelly",
+  "name": "Shelly",
+  "description": {
+    "pl": "Przekaźniki i gniazdka Shelly (Gen1 i Gen2/Plus) po sieci lokalnej — włącz/wyłącz + pomiar mocy.",
+    "en": "Shelly relays and plugs (Gen1 and Gen2/Plus) over LAN — on/off + power metering."
+  },
+  "version": "1.0.0",
+  "author": "jordanmruczynski",
+  "category": "other",
+  "icon": "bolt",
+  "requirements": ["httpx>=0.27"],
+  "config": [
+    {
+      "key": "SHELLY_IP",
+      "label": {"pl": "Adres IP urządzenia Shelly"},
+      "type": "string",
+      "required": true,
+      "secret": false,
+      "placeholder": "192.168.1.40",
+      "env_fallback": "SHELLY_IP",
+      "help": {"pl": "Z aplikacji Shelly (Ustawienia urządzenia → Informacje) albo z listy DHCP routera."}
+    },
+    {
+      "key": "SHELLY_LABEL",
+      "label": {"pl": "Co jest podpięte? (opcjonalnie)"},
+      "type": "string",
+      "required": false,
+      "secret": false,
+      "placeholder": "lampka, wentylator…",
+      "help": {"pl": "Krótka nazwa dla agenta i kafelka, np. 'wentylator'."}
+    }
+  ],
+  "pairing": {
+    "method": "form",
+    "actions": [
+      {"id": "test", "label": {"pl": "Testuj połączenie"}, "kind": "test"}
+    ]
+  },
+  "tools": [
+    {"name": "turn_on_shelly", "proactive": true},
+    {"name": "turn_off_shelly", "proactive": true},
+    {"name": "get_shelly_status", "proactive": true}
+  ],
+  "dashboard_tile": {"icon": "bolt", "label": {"pl": "Shelly"}},
+  "status_line": true
+}

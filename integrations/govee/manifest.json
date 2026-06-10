@@ -1,0 +1,49 @@
+{
+  "manifest_version": 1,
+  "id": "govee",
+  "name": "Govee",
+  "description": {
+    "pl": "Taśmy i lampy LED Govee przez chmurę (Govee Developer API) — włącz/wyłącz, jasność.",
+    "en": "Govee LED strips and lamps via the Govee Developer API cloud — on/off, brightness."
+  },
+  "version": "1.0.0",
+  "author": "jordanmruczynski",
+  "category": "lighting",
+  "icon": "sunrise",
+  "requirements": ["httpx>=0.27"],
+  "config": [
+    {
+      "key": "GOVEE_API_KEY",
+      "label": {"pl": "Klucz API Govee"},
+      "type": "password",
+      "required": true,
+      "secret": true,
+      "env_fallback": "GOVEE_API_KEY",
+      "help": {"pl": "Aplikacja Govee Home → profil → Ustawienia → Apply for API Key (przychodzi mailem)."}
+    },
+    {
+      "key": "GOVEE_DEVICE",
+      "label": {"pl": "Urządzenie"},
+      "type": "string",
+      "required": true,
+      "secret": false,
+      "placeholder": "AA:BB:…|H6159",
+      "help": {"pl": "Wpisz klucz API, zapisz, a potem użyj 'Pobierz urządzenia' — pole wypełni się samo (format: id|model)."}
+    }
+  ],
+  "pairing": {
+    "method": "cloud_list",
+    "actions": [
+      {"id": "list_devices", "label": {"pl": "Pobierz urządzenia"}, "kind": "list_pick", "fills": "GOVEE_DEVICE"},
+      {"id": "test", "label": {"pl": "Testuj połączenie"}, "kind": "test"}
+    ]
+  },
+  "tools": [
+    {"name": "turn_on_govee", "proactive": true},
+    {"name": "turn_off_govee", "proactive": true},
+    {"name": "set_govee_brightness", "proactive": true},
+    {"name": "get_govee_status", "proactive": true}
+  ],
+  "dashboard_tile": {"icon": "sunrise", "label": {"pl": "Govee"}},
+  "status_line": true
+}

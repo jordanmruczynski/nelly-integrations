@@ -1,0 +1,50 @@
+{
+  "manifest_version": 1,
+  "id": "hue",
+  "name": "Philips Hue",
+  "description": {
+    "pl": "Światła Philips Hue przez mostek (Hue Bridge) w sieci lokalnej. Steruje wszystkimi światłami naraz.",
+    "en": "Philips Hue lights via the local Hue Bridge. Controls all lights as one group."
+  },
+  "version": "1.0.0",
+  "author": "jordanmruczynski",
+  "category": "lighting",
+  "icon": "sunrise",
+  "requirements": ["httpx>=0.27"],
+  "config": [
+    {
+      "key": "HUE_BRIDGE_IP",
+      "label": {"pl": "Adres IP mostka Hue"},
+      "type": "string",
+      "required": true,
+      "secret": false,
+      "placeholder": "192.168.1.2",
+      "env_fallback": "HUE_BRIDGE_IP",
+      "help": {"pl": "Znajdziesz w aplikacji Hue → Ustawienia → Moje mostki → i, albo w routerze."}
+    },
+    {
+      "key": "HUE_USERNAME",
+      "label": {"pl": "Klucz aplikacji (username)"},
+      "type": "password",
+      "required": true,
+      "secret": true,
+      "env_fallback": "HUE_USERNAME",
+      "help": {"pl": "Wciśnij okrągły przycisk na mostku, a potem w ciągu 30 s użyj przycisku 'Utwórz klucz' poniżej — pole wypełni się samo."}
+    }
+  ],
+  "pairing": {
+    "method": "form",
+    "actions": [
+      {"id": "create_user", "label": {"pl": "Utwórz klucz (najpierw wciśnij przycisk mostka)"}, "kind": "list_pick", "fills": "HUE_USERNAME"},
+      {"id": "test", "label": {"pl": "Testuj połączenie"}, "kind": "test"}
+    ]
+  },
+  "tools": [
+    {"name": "turn_on_hue_lights", "proactive": true},
+    {"name": "turn_off_hue_lights", "proactive": true},
+    {"name": "set_hue_brightness", "proactive": true},
+    {"name": "get_hue_status", "proactive": true}
+  ],
+  "dashboard_tile": {"icon": "sunrise", "label": {"pl": "Hue"}},
+  "status_line": true
+}
