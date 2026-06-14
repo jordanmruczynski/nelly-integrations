@@ -51,7 +51,8 @@ _WATER_KEYWORDS = {
 }
 
 # Kody-kandydaci per operacja (różne firmware'y Tuya "sd"). Pierwszy wspierany wygrywa.
-_START_CODES = ("mode", "switch_go", "power", "switch")
+# Start: dedykowana komenda boolowa (COBBO: power_go); dodatkowo ustawiamy mode=smart.
+_START_BOOL_CODES = ("power_go", "switch_go", "start", "power", "switch")
 _PAUSE_CODES = ("pause",)
 _DOCK_CODES = ("switch_charge", "mode")  # mode -> "chargego"
 _LOCATE_CODES = ("seek", "find_robot")
@@ -180,16 +181,20 @@ def _first_supported(funcs: dict[str, Any], candidates: tuple[str, ...]) -> str 
 def start_clean(device_id: str | None = None) -> None:
     dev = _resolve_device(device_id)
     funcs = _functions(dev)
-    code = _first_supported(funcs, _START_CODES)
-    if code is None:
-        raise RuntimeError("Robot nie udostępnia komendy startu sprzątania.")
-    if code == "mode":
-        opts = _enum_range(funcs["mode"])
-        value = next((m for m in opts if m.lower() in ("smart", "auto", "clean", "selectroom")), None) \
-            or next((m for m in opts if m.lower() not in ("chargego", "standby", "pause")), opts[0] if opts else "smart")
-        _send(dev, "mode", value)
-    else:  # switch_go / power / switch — boolowy start
-        _send(dev, code, True)
+    # 1) ustaw tryb pełnego sprzątania, jeśli urządzenie ma enum 'mode'
+    mode_opts = _enum_range(funcs.get("mode", {}))
+    smart = next((m for m in mode_opts if m.lower() in ("smart", "auto", "clean", "selectall", "total")), None)
+    if smart:
+        _send(dev, "mode", smart)
+    # 2) uruchom dedykowaną komendą boolową (COBBO: power_go)
+    bcode = _first_supported(funcs, _START_BOOL_CODES)
+    if bcode:
+        _send(dev, bcode, True)
+        return
+    # 3) brak komendy boolowej — sam tryb 'smart' bywa wystarczający do startu
+    if smart:
+        return
+    raise RuntimeError("Robot nie udostępnia komendy startu sprzątania (sprawdź `functions`).")
 
 
 def pause(device_id: str | None = None) -> None:
