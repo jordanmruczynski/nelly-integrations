@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "generated_at": "2026-06-10T12:44:56Z",
+ "generated_at": "2026-06-14T13:16:50Z",
  "integrations": [
   {
    "id": "air_purifier",
@@ -16,7 +16,7 @@
     "manifest.json": "sha256:51b2e4e3a91893a56ab8c0e0368c319691bf063a80560ca861262e1eede989e4",
     "smartthings.py": "sha256:2660be752cb27e5e34f545ed1a70f09233f6b1025325acac78d42af56fb8fe40"
    },
-   "commit": "d3918cef43ddb1ef042da6730b6a714a4c45884c",
+   "commit": "f06d568c26233c7025c5c6181cdc8f0eaaac1db1",
    "min_framework": 1
   },
   {
@@ -35,7 +35,7 @@
     "__init__.py": "sha256:1bec7fd8d002ee7ae827e2835738e85f1148ff87e5b1730e4a6b0c9a664b34cd",
     "manifest.json": "sha256:cfa83f722222117c8aa702985f146ff90d0c9c52bed5fee04a8b8815070c4c4f"
    },
-   "commit": "d3918cef43ddb1ef042da6730b6a714a4c45884c",
+   "commit": "f06d568c26233c7025c5c6181cdc8f0eaaac1db1",
    "min_framework": 1
   },
   {
@@ -54,7 +54,7 @@
     "__init__.py": "sha256:1a87244333ac2d339e395c39d74b1f9656cfb221ad234fa4c95c9155644bc610",
     "manifest.json": "sha256:cb3a010409374b5dd9818d837542ea6437d4417e5e2282d754f6dbda1051dc99"
    },
-   "commit": "d3918cef43ddb1ef042da6730b6a714a4c45884c",
+   "commit": "f06d568c26233c7025c5c6181cdc8f0eaaac1db1",
    "min_framework": 1
   },
   {
@@ -73,7 +73,7 @@
     "__init__.py": "sha256:f6fb245cd2df4b997adf6bd22c3a8274d287b93dd1af3e74605307ad744be1eb",
     "manifest.json": "sha256:dc638609cc278584b03f05adc1c88e432f075fe45996104a874afc8bf4d738a8"
    },
-   "commit": "d3918cef43ddb1ef042da6730b6a714a4c45884c",
+   "commit": "f06d568c26233c7025c5c6181cdc8f0eaaac1db1",
    "min_framework": 1
   },
   {
@@ -93,7 +93,27 @@
     "manifest.json": "sha256:c04e13595a46b579f14d1ea10cbe2c1604395ca99e2060765ccb9fb951838b72",
     "service.py": "sha256:63877c48126a8134a0d429caac6deb3cb2744b2ba4b3045a3b10b36a6d50deb0"
    },
-   "commit": "d3918cef43ddb1ef042da6730b6a714a4c45884c",
+   "commit": "f06d568c26233c7025c5c6181cdc8f0eaaac1db1",
+   "min_framework": 1
+  },
+  {
+   "id": "tuya_vacuum",
+   "name": "Robot Tuya",
+   "description_pl": "Robot odkurzająco-mopujący na platformie Tuya (np. COBBO PRO 28 3D Ultra) przez chmurę Tuya Cloud.",
+   "version": "1.0.0",
+   "category": "cleaning",
+   "icon": "bolt",
+   "author": "jordan",
+   "requirements": [
+    "tinytuya>=1.18"
+   ],
+   "files": {
+    "__init__.py": "sha256:77d93c04c03b685212dbff5d5182974df14c17031ee1dc64c67131bb6b02298e",
+    "__main__.py": "sha256:d3a08da18c7f57daf08373c10802d9f47cbbfc383494dd4fa3467b199161a07a",
+    "device.py": "sha256:c9e38abd0254e68af89b5919e637ecad93db0aec77e6f107325e4319fec2683b",
+    "manifest.json": "sha256:ffa01c8e4e5c77033831e8f4aa0efac216a7f7715b6ab2fb68eff890486ed21c"
+   },
+   "commit": "f06d568c26233c7025c5c6181cdc8f0eaaac1db1",
    "min_framework": 1
   },
   {
@@ -111,7 +131,7 @@
     "domain.py": "sha256:b62294e205a6c4e763e45086a2a3dc33d9f9905b0a8522fa38e2a4795af66434",
     "manifest.json": "sha256:f80c6ca989d14a1781f7b32d650c30bdcff55567da60fd89b7d614b01ff20d4c"
    },
-   "commit": "d3918cef43ddb1ef042da6730b6a714a4c45884c",
+   "commit": "f06d568c26233c7025c5c6181cdc8f0eaaac1db1",
    "min_framework": 1
   },
   {
@@ -132,7 +152,7 @@
     "device.py": "sha256:6e1b488b7d0ac4eea4bb18ba7461820392af9b3c63bf902414cefc61419ba6ff",
     "manifest.json": "sha256:a05230ff11739e40cc7cc68c5c33fce5558febf0940f8a9b3e742663ddddf95d"
    },
-   "commit": "d3918cef43ddb1ef042da6730b6a714a4c45884c",
+   "commit": "f06d568c26233c7025c5c6181cdc8f0eaaac1db1",
    "min_framework": 1
   },
   {
@@ -148,7 +168,7 @@
     "__init__.py": "sha256:5c91777df9c493e4dd3907bdf3c0e3acf3c2353a5de6ac06be5a9dd232e9d9b1",
     "manifest.json": "sha256:2d5feeefb9a8d77a1d44d83e2a784168043328b6645d4fed194c938295b9552c"
    },
-   "commit": "d3918cef43ddb1ef042da6730b6a714a4c45884c",
+   "commit": "f06d568c26233c7025c5c6181cdc8f0eaaac1db1",
    "min_framework": 1
   }
  ]
