@@ -1,0 +1,92 @@
+{
+  "manifest_version": 1,
+  "id": "tuya_vacuum",
+  "name": "Robot Tuya",
+  "description": {
+    "pl": "Robot odkurzająco-mopujący na platformie Tuya (np. COBBO PRO 28 3D Ultra) przez chmurę Tuya Cloud.",
+    "en": "Tuya-platform robot vacuum/mop (e.g. COBBO PRO 28 3D Ultra) via Tuya Cloud."
+  },
+  "version": "1.0.0",
+  "author": "jordan",
+  "category": "cleaning",
+  "icon": "bolt",
+  "requirements": ["tinytuya>=1.18"],
+  "config": [
+    {
+      "key": "TUYA_REGION",
+      "label": {"pl": "Region (centrum danych)"},
+      "type": "enum",
+      "choices": ["eu", "us", "cn", "in"],
+      "required": false,
+      "secret": false,
+      "default": "eu",
+      "env_fallback": "TUYA_REGION",
+      "help": {"pl": "Centrum danych projektu Tuya IoT. Dla Polski: 'eu' (Central Europe)."}
+    },
+    {
+      "key": "TUYA_ACCESS_ID",
+      "label": {"pl": "Access ID (Client ID)"},
+      "type": "string",
+      "required": true,
+      "secret": true,
+      "env_fallback": "TUYA_ACCESS_ID",
+      "help": {"pl": "Z projektu Cloud na iot.tuya.com → Overview → Access ID."}
+    },
+    {
+      "key": "TUYA_ACCESS_SECRET",
+      "label": {"pl": "Access Secret (Client Secret)"},
+      "type": "password",
+      "required": true,
+      "secret": true,
+      "env_fallback": "TUYA_ACCESS_SECRET",
+      "help": {"pl": "Z projektu Cloud na iot.tuya.com → Overview → Access Secret."}
+    },
+    {
+      "key": "VACUUM_DEVICE_ID",
+      "label": {"pl": "Robot (urządzenie)"},
+      "type": "string",
+      "required": true,
+      "secret": false,
+      "env_fallback": "VACUUM_DEVICE_ID",
+      "help": {"pl": "Wybierz z listy po wpisaniu danych Cloud (przycisk 'Pobierz urządzenia'), albo wklej Device ID z zakładki Devices w konsoli Tuya IoT. Wymaga podpięcia konta z apki Tuya (Link App Account)."}
+    },
+    {
+      "key": "VACUUM_ROOMS",
+      "label": {"pl": "Pokoje (nazwa → ID)"},
+      "type": "string",
+      "required": false,
+      "secret": false,
+      "placeholder": "{\"kuchnia\": 1, \"salon\": 2, \"sypialnia\": 3}",
+      "env_fallback": "VACUUM_ROOMS",
+      "help": {"pl": "Mapa nazw pokoi na ID z mapy robota (JSON), żeby móc powiedzieć 'odkurz kuchnię'. ID znajdziesz uruchamiając sprzątanie pokoju w apce Tuya i porównując `python -m integrations.tuya_vacuum status <id>`."}
+    },
+    {
+      "key": "VACUUM_ROOM_DP",
+      "label": {"pl": "Kod DP listy pokoi (zaawansowane)"},
+      "type": "string",
+      "required": false,
+      "secret": false,
+      "env_fallback": "VACUUM_ROOM_DP",
+      "help": {"pl": "Opcjonalnie: wymuś konkretny kod DP do wysyłki listy pokoi (różne firmware'y kodują to inaczej). Zostaw puste, by Nelly wykryła automatycznie. Podejrzyj kandydatów: `python -m integrations.tuya_vacuum functions <id>`."}
+    }
+  ],
+  "pairing": {
+    "method": "cloud_list",
+    "actions": [
+      {"id": "list_devices", "label": {"pl": "Pobierz urządzenia"}, "kind": "list_pick", "fills": "VACUUM_DEVICE_ID"},
+      {"id": "test", "label": {"pl": "Testuj połączenie"}, "kind": "test"}
+    ]
+  },
+  "tools": [
+    {"name": "start_vacuum", "proactive": false},
+    {"name": "clean_vacuum_rooms", "proactive": false},
+    {"name": "pause_vacuum", "proactive": true},
+    {"name": "return_vacuum_to_dock", "proactive": true},
+    {"name": "set_vacuum_suction", "proactive": false},
+    {"name": "set_vacuum_water", "proactive": false},
+    {"name": "locate_vacuum", "proactive": true},
+    {"name": "get_vacuum_status", "proactive": true}
+  ],
+  "dashboard_tile": {"icon": "bolt", "label": {"pl": "Odkurzacz"}},
+  "status_line": true
+}
